@@ -1,11 +1,12 @@
 import express from 'express';
+import cors from 'cors';
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
 const app = express()
-const port = 3000;
 app.use(express.json());
+app.use(cors('http://localhost:5173/'));  // TEST
 
 // Post  Criando
 app.post('/usuarios', async (req, res) => {
@@ -66,11 +67,4 @@ app.delete('/usuarios/:id', async (req, res) => {
     res.status(200).json({ message: "Usuário deletado com sucesoo!" });
 })
 
-app.listen(port);
-
-//  criar api de usuarios
-
-//  - criar um usuário
-//  - listar todos os usuário
-//  - Editar um usuário
-//  - deletar um usuário
+app.listen(3000);
